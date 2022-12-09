@@ -1,0 +1,69 @@
+{%extends 'base.html'%}
+{%block body%}
+<!--message display-->
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+  <strong>{{ message }}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    {% endfor %}
+</ul>
+{% endif %}
+    </div>
+    <div class="col-4"></div>
+</div>
+<!--Services-->
+<div class="container-fluid">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {%for service in services%}
+
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Service image-->
+                            <img class="card-img-top" src="{{service.image.url}}" alt="..." />
+                            <!-- Service details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Service  name-->
+                                    <h5 class="fw-bolder">{{service.name}}</h5>
+                                    <!-- Product price-->
+                                    <p><strong>Price: $ {{service.cost}}</strong></p>
+                                    <!-- Product category-->
+                                    <p><strong>Category: {{service.category}}</strong></p>
+                                    <!-- Product rating-->
+                                    <p><strong>Rating: {{service.rating}}</strong> </p>
+                                    <!-- Product availability-->
+                                    <strong>Duration: {{service.duration}} </strong>
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" href="{%url 'book' service.id %}">Book</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        {%endfor%}
+    </div>
+</div>
+<!--Categories-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            {%for category in services.category %}
+            {{category_name}}
+
+            {%endfor%}
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+    </div>
+</div>
+{%endblock%}

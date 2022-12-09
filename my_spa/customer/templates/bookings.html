@@ -1,0 +1,69 @@
+{%extends 'base.html'%}
+{%block body%}
+ <!-- Header-->
+        <header class="bg-primary py-0">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">My Bookings</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Health and Beauty</p>
+                </div>
+            </div>
+        </header>
+        <!-- Section-->
+<div class="container">
+  <div class="container-fluid">
+
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {%if bookings%}
+
+            {% for book in bookings %}
+
+
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{book.services.image.url}}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{book.services}}</h5>
+                                    <!-- Product price-->
+                                    <strong>Price: {{book.cost}} USD</strong>
+                                    <!-- Booking ID-->
+                                    <p><strong>Booking ID: {{book.id}} </strong></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <strong>Booked Slot:</strong>
+                                    <p>{{book.timeslot}}</p>
+                                    <p><strong>Selected Beautician:</strong> {{book.beautician}}</p>
+                                </div>
+                                <div class="col-2">
+                                    <a href="{%url 'cancel-booking' book.id %}" class="btn btn-outline-danger">Cancel</a>
+
+                                    <a href="{%url 'update-booking' book.id %}" class="btn btn-outline-success">Update</a>
+
+                                </div>
+                                <div class="col-2"></div>
+                            </div>
+                        </div>
+                    </div>
+            {%endfor%}
+        {%else%}
+        <div class="row col-4"></div>
+        <div class="row col-4"><strong>Sorry! No bookings found, please book any of our services. </strong></div>
+        <div class="row col-4"></div>
+        {%endif%}
+    </div>
+</div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8"></div>
+    <div class="col-2"></div>
+  </div>
+
+</div>
+
+{%endblock%}

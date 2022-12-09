@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+{%block body%}
+<div class="container-fluid">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{service.image.url}}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{service.name}}</h5>
+                                    <!-- Product price-->
+                                     <strong>Service amount: {{service.cost}}</strong>
+                                    <!-- Product category-->
+                                     <strong>Service Category: {{service.category}}</strong>
+                                    <!-- Service Duration-->
+                                     <strong>Service Duration: {{service.duration}}</strong>
+                                    <!-- Beauticians & slot-->
+                                    <form action="" method="post">
+                                        {%csrf_token%}
+                                        
+                                        <!-- Timeslots-->
+                                    <label for=""><strong> Choose the Timeslot:</strong></label>
+                                        {%if available_slots%}
+                                        {%for slot in available_slots%}
+                                          <input type="checkbox" id="slot" name="slot" value="{{slot}}">
+                                          <label for="slot"> {{slot}}</label><br>
+                                        {%endfor%}
+                                        {%else%}
+                                        <p>Sorry! All slots booked already, please try after sometime</p>
+                                        {%endif%}
+                                        <!-- Beauticians-->
+                                    <label for=""><strong> Choose the beautician:</strong></label>
+                                        {%for b in beautician%}
+                                          <input type="checkbox" id="beautician" name="beauty" value="{{b}}">
+                                          <label for="beautician"> {{b}}</label><br>
+                                        {%endfor%}
+                                        <button type="submit">Proceed</button>
+                                        </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+    </div>
+</div>
+{%endblock%}

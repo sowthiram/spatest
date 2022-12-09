@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{%block body%}
+<div class="row col-2"></div>
+<div class="row col-8">
+        {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+  <strong>{{ message }}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        {%endfor%}
+        {%endif%}
+</div>
+<div class="row col-2"></div>
+
+<div class="container-fluid">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="col-4">
+            <form action="" method="post">
+                {%csrf_token%}
+                <label for="slots"><strong> Select the slot to remove </strong></label>
+                {%for slot in slots%}
+                <input type="submit" name="slot" value="{{slot}}" />
+                {%endfor%}
+            </form>
+        </div>
+        <div class="col-4">
+            <form action="" method="post">
+                {%csrf_token%}
+                <strong>Select the slot to add</strong>
+                {{form.as_p}}
+                <button type="submit" class="btn btn-outline-success">Add Slot</button>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+{%endblock%}

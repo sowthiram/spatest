@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<!--
+Template Name: Wavefire
+Author: <a href="https://www.os-templates.com/">OS Templates</a>
+Author URI: https://www.os-templates.com/
+Copyright: OS-Templates.com
+Licence: Free to use under our free template licence terms
+Licence URI: https://www.os-templates.com/template-terms
+-->
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<!--<title>Home</title>-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{%static 'layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+<!-- CSS only -->
+<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">-->
+<!-- JavaScript Bundle with Popper -->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>-->
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row0">
+  <header id="header" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="one_quarter first">
+      <a href="/"></a><img src="{%static 'images/logo.png' %}" alt="logoimage">
+<!--      <h1><a href="/"><span>S</span>pa<span>J</span>uvenate</a></h1>-->
+    </div>
+    <div class="three_quarter">
+      <ul class="nospace clear">
+        <li class="one_third first">
+          <div class="block clear"><a href="#"><i class="fas fa-phone"></i></a> <span><strong>Give us a call:</strong> (754)800-6006 </span></div>
+        </li>
+        <li class="one_third">
+          <div class="block clear"><a href="#"><i class="fas fa-envelope"></i></a> <span><strong>Send us a mail:</strong> SPAjuvenate@gmail.com</span></div>
+        </li>
+        <li class="one_third">
+          <div class="block clear"><a href="#"><i class="fas fa-clock"></i></a> <span><strong> Mon. - Sat.:</strong> 08.00am - 18.00pm</span></div>
+        </li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </header>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <section class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <nav id="mainav">
+      <ul class="clear">
+        <li class="active"><a href="{%url 'customer:home'%}">Home</a></li>
+        <li><a class="drop" href="#">Service</a>
+          <ul>
+            <li><a href="pages/gallery.html">Mani/Pedi</a></li>
+            <li><a href="pages/full-width.html">Manicure</a></li>
+            <li><a href="pages/sidebar-left.html">Pedicure</a></li>
+            <li><a href="pages/sidebar-right.html">Hair Removal Waxing</a></li>
+            <li><a href="pages/basic-grid.html">Add ons</a></li>
+            <li><a href="pages/font-icons.html">Massage</a></li>
+            <li><a href="pages/font-icons.html">Eye Lash Extension</a></li>
+            <li><a href="pages/font-icons.html">Facial</a></li>
+          </ul>
+        </li>
+        <!-- <li><a class="drop" href="#">Dropdown</a> -->
+          <!-- <ul> -->
+            <!-- <li><a href="#">Level 2</a></li>
+            <li><a class="drop" href="#">Level 2 + Drop</a>
+              <ul>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+                <li><a href="#">Level 3</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Level 2</a></li>
+          </ul>
+        </li> -->
+        <li><a href="#">SHOP</a></li>
+        <li><a href="#">INTRO OFFERS</a></li>
+        <li><a href="#">BOOK NOW</a></li>
+        <li><a href="#">MEMBERSHIP</a></li>
+        <li><a href="#">PACKAGES</a></li>
+        <li><a href="#">CONTACT</a></li>
+        <li><a href="#">OWNER</a></li>
+        <li><a href="#">GIFT CARDS</a></li>
+      </ul>
+    </nav>
+    <!-- ################################################################################################ -->
+    <div id="searchform">
+      <div>
+        <form action="#" method="post">
+          <fieldset>
+            <legend>Quick Search:</legend>
+            <input type="text" placeholder="Enter search term&hellip;">
+            <button type="submit"><i class="fas fa-search"></i></button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <!-- ################################################################################################ -->
+  </section>
+</div>
+{%block body%}
+{%endblock%}
+<div class="wrapper row4">
+    <footer id="footer" class="hoc clear"> 
+      <!-- ################################################################################################ -->
+      <div class="one_third first">
+        <h6 class="heading">About us</h6>
+        <a href="#" class="btmspace-10">Our Story</a><br>
+        <a href="#" class="btmspace-10">First Visit</a><br>
+        <a href="#" class="btmspace-10">Spa Etiquette</a><br>
+        <a href="#" class="btmspace-10">Employee</a><br>
+        <a href="#" class="btmspace-10">Career</a>
+        <!-- <p class="btmspace-10">Vulputate ante ut adipiscing egestas risus orci tincidunt nulla ac lacinia lacus felis et augue donec lacus [<a href="#"><i class="fas fa-arrow-right"></i></a>]</p> -->
+        <ul class="faico clear">
+          <li><a class="faicon-dribble" href="#"><i class="fab fa-dribbble"></i></a></li>
+          <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+          <li><a class="faicon-google-plus" href="#"><i class="fab fa-google-plus-g"></i></a></li>
+          <li><a class="faicon-linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+          <li><a class="faicon-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a class="faicon-vk" href="#"><i class="fab fa-vk"></i></a></li>
+        </ul>
+      </div>  
+      <div class="one_third">
+        <h6 class="heading">Terms and Conditions</h6>
+        <a href="#" class="btmspace-10">Cancellation Policy</a><br>
+        <a href="#" class="btmspace-10">Gift Card Program Terms & Conditions</a><br>
+        <a href="#" class="btmspace-10">Rules Terms and Conditions</a><br>
+        <a href="#" class="btmspace-10">Privacy Policy</a><br>
+        <a href="#" class="btmspace-10">Cookie Policy</a>
+        <!-- <ul class="nospace clear latestimg">
+          <li><a href="#"><img src="{%static 'images/demo/100x100.png' %}" alt=""></a></li>
+          <li><a href="#"><img src="{%static 'images/demo/100x100.png' %}" alt=""></a></li>
+          <li><a href="#"><img src="{%static 'images/demo/100x100.png' %}" alt=""></a></li>
+          <li><a href="#"><img src="{%static 'images/demo/100x100.png' %}" alt=""></a></li>
+          <li><a href="#"><img src="{%static 'images/demo/100x100.png' %}" alt=""></a></li>
+          <li><a href="#"><img src="{%static 'images/demo/100x100.png' %}" alt=""></a></li>
+        </ul> -->
+      </div>
+      <div class="one_third">
+        <h6 class="heading">SPAJuvenate Location</h6>
+        <p class="nospace btmspace-15">SPAjuvenate, 1000 East Atlantic BLVD, Suite 100, Pompano Beach, Florida 33060</p><br>
+        <div class="block clear"><a href="#"><i class="fas fa-envelope"></i>&nbsp;</a>SPAjuvenate@gmail.com</span></div>
+        <form method="post" action="#">
+          <fieldset>
+            <legend>Newsletter:</legend>
+            <input class="btmspace-15" type="text" value="" placeholder="Name">
+            <input class="btmspace-15" type="text" value="" placeholder="Email">
+            <button type="submit" value="submit">Submit</button>
+          </fieldset>
+        </form>
+      </div>
+      <!-- ################################################################################################ -->
+    </footer>
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div class="wrapper row5">
+    <div id="copyright" class="hoc clear"> 
+      <!-- ################################################################################################ -->
+      <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#"> SPAJuvenate</a></p>
+      <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+      <!-- ################################################################################################ -->
+    </div>
+  </div>
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+  <!-- JAVASCRIPTS -->
+  <script src="{%static 'layout/scripts/jquery.min.js'%}"></script>
+  <script src="{%static 'layout/scripts/jquery.backtotop.js' %}"></script>
+  <script src="{%static 'layout/scripts/jquery.mobilemenu.js' %}"></script>
+  </body>
+  </html>

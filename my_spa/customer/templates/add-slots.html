@@ -1,0 +1,42 @@
+{%extends 'base.html'%}
+{%block body%}
+<div class="container-fluid">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+{%for service in services%}
+
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{service.image.url}}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{service.name}}</h5>
+                                    <!-- Product price-->
+                                    <p> <strong>Service amount: {{service.cost}}</strong></p>
+                                    <!-- Product category-->
+                                    <p> <strong>Service Category: {{service.category}}</strong></p>
+                                    <!-- Service Duration-->
+                                    <p> <strong>Service Duration: {{service.duration}}</strong></p>
+                                    <!-- Service Slots-->
+                                    <form action="" method="post">
+                                        {%csrf_token%}
+                                    <label for="slots"><strong> Choose the slot:</strong></label>
+                                        {%for slot in slots%}
+                                    <input type="submit" name="slot" value="{{slot}}" />
+                                      {%endfor%}
+                                        </form>
+                                    <!-- Button-->
+                                    <button type="submit" class="btn btn-success">Book Slot</button>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    </div>
+    
+    {%endfor%}
+</div>
+{%endblock%}

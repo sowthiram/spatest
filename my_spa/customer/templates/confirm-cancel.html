@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{%block body%}
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+        <!-- Product image-->
+        <img class="card-img-top" src="{{booking.services.image.url}}" alt="..." />
+            <p><strong>Booked Service: {{booking.services}}</strong></p>
+            <p><strong>Service Amount: {{booking.cost}}</strong></p>
+            <p><strong>Booked Beautician: {{booking.beautician}}</strong></p>
+
+
+        </div>
+        <div class="col-4">
+            <h4>Booking Cancellation</h4>
+
+        Do you want to cancel the booking? Please confirm.
+        <form action="" method="post">
+            {%csrf_token%}
+            <button type="submit" class="btn btn-outline-danger">Confirm</button>
+            <a href="{%url 'bookings' %}" class="btn btn-outline-success">Go back</a>
+        </form>
+
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+{%endblock%}
