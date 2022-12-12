@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from customer.models import *
 from datetime import date
-from customer.models import *
 import datetime
 # from datetimewidget.widgets import DateTimeWidget
 
@@ -28,25 +27,10 @@ class RegistrationForm(UserCreationForm):
 
         }
 
-class DatePicker(forms.DateInput):
-    input_type = 'date'
-
-# class BookForm(forms.ModelForm):
-#     class Meta:
-#         model = Booking
-#         fields = ('date', 'timeslot')
-#         widgets = {
-#             'date': DatePicker(),
-#         }
-
-
 class BookForm(forms.Form):
 
     timeslot=forms.ChoiceField(choices=Services.SERVICE_TIMESLOT_LIST,required=True)
 
-class AddSlotForm(forms.Form):
-
-    timeslot=forms.ChoiceField(choices=Services.SERVICE_TIMESLOT_LIST,required=True)
 
 
 class UpdateBookingForm(forms.ModelForm):
@@ -59,12 +43,3 @@ class CancelBookingForm(forms.ModelForm):
         model=Booking
         fields=["status"]
 
-class CategoryAddForm(forms.ModelForm):
-    class Meta:
-        model=Categories
-        fields=["category_name","description","status","image"]
-
-class ServiceAddForm(forms.ModelForm):
-    class Meta:
-        model= Services
-        fields = ['name','category','image','duration','cost','description','beautician','status','timeslots']
