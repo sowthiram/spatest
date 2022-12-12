@@ -7,13 +7,30 @@ from django.contrib import messages
 from owner.forms import*
 
 # Create your views here.
+
+class DashboardView(TemplateView):
+    template_name="index.html"
+    def get_context_data(self,*args,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context["bookings"]=Booking.objects.all()
+        return context
+
+class AdminAccountView(TemplateView):
+    template_name="account-settings.html"
+    def get_context_data(self,*args,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context["services"]=Services.objects.all()
+        return context
+
+
+
 #path("slots", views.AddSlots.as_view(), name="add-slot")
 #Admin action
 #Pending
 class AddSlots(TemplateView):
     template_name = "add-slots.html"
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self,request,*args,**kwargs):
         context = super().get_context_data(**kwargs)
         all_services = Services.objects.all()
         context["services"] = all_services
@@ -95,12 +112,25 @@ class AddCategories(CreateView):
     #         return redirect("home")
 
 # path("services/add", views.AddServices.as_view(), name="add-service"),
-class AddServices(CreateView):
+class ManageServices(CreateView):
     form_class = ServiceAddForm
-    template_name = "add-services.html"
+    template_name = "manage-services.html"
     success_url = reverse_lazy("home")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["services"]=Services.objects.all()
         return context
+    
+class ServiceView(DetailView):
+    model=Services
+    template_name="service-view.html"
+    pk_url_kwarg="sid"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        id=kwargs.get("sid")
+        
+        print(id)
+        # context["service"]=Services.objects.get(id=id)
+        return context
+    
