@@ -95,13 +95,7 @@ class Booking(models.Model):
     status=models.CharField(max_length=200, choices=options, default="booked")
 
 
-class Membership(models.Model):
-    name = models.CharField(max_length=150)
-    validity = models.IntegerField()
-    desc = models.CharField(max_length=200)
 
-    def __str__(self):
-        return self.name
 
 
 

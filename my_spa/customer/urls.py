@@ -11,5 +11,6 @@ urlpatterns=[
     path("mybookings/<int:bid>", views.BookingUpdateView.as_view(), name="update-booking"),
     path("mybookings/<int:bid>/cancel", views.CancelBookingView.as_view(), name="cancel-booking"),
     path("shop", views.ShopView.as_view(), name="shop"),
+    path("membership", views.MembershipView.as_view(), name="memberships"),
 
 ]

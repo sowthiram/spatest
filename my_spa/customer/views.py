@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from customer.models import *
+from owner.models import *
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import CreateView, TemplateView, FormView, DetailView, ListView, UpdateView, RedirectView, View
@@ -172,4 +173,7 @@ class ShopView(TemplateView):
             print("No category")
             return render(request,"shop.html",{"services":None,"categories":categories})
 
-        return redirect("customer:shop")
+class MembershipView(TemplateView):
+    template_name="membership.html"
+    model=Memberships
+    context_object_name= "memberships"

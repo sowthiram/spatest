@@ -7,5 +7,5 @@ admin.site.register(Services)
 admin.site.register(Booking)
 admin.site.register(BookedSlot)
 admin.site.register(Timeslots)
-admin.site.register(Membership)
+# admin.site.register(Memberships)
 

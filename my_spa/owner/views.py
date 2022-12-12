@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from customer.models import *
+from owner.models import *
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate,login,logout
 from django.views.generic import CreateView,TemplateView,FormView,DetailView,ListView,UpdateView,RedirectView,View
@@ -125,12 +126,13 @@ class ManageServices(CreateView):
 class ServiceView(DetailView):
     model=Services
     template_name="service-view.html"
+    context_object_name= "service"
     pk_url_kwarg="sid"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        id=kwargs.get("sid")
-        
-        print(id)
-        # context["service"]=Services.objects.get(id=id)
-        return context
+
+class ManageMemberships(TemplateView):
+    model=Memberships
+    template_name="manage-memberships.html"
+    context_object_name= "membership"
+    
+
     
