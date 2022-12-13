@@ -1,5 +1,10 @@
 {%extends 'base1.html'%}
 {%block body%}
+{%if messages%}
+{%for message in messages%}
+<div class="alert alert-danger" role="alert">{{message}}</div>
+{%endfor%}
+{%endif%}
 <!-- Content wrapper -->
 <div class="content-wrapper">
     <!-- Content -->
