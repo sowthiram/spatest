@@ -10,5 +10,6 @@ urlpatterns=[
     path("services/manage", views.ManageServices.as_view(), name="add-service"),
     path("services/<int:sid>", views.ServiceView.as_view(), name="view-service"),
     path("account", views.AdminAccountView.as_view(), name="account-settings"),
-    path("memberships/manage", views.ManageMemberships.as_view(), name="manage-memberships")
+    path("memberships/manage", views.ManageMemberships.as_view(), name="manage-memberships"),
+    path("memberships/add", views.AddMemberships.as_view(), name="add-memberships")
 ]

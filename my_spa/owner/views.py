@@ -134,15 +134,15 @@ class ManageMemberships(TemplateView):
     template_name="manage-memberships.html"
     context_object_name= "membership"
 
-class AddMemberships(CreateView):
+class AddMemberships(FormView):
     template_name = "add-memberships.html"
-    form_class =CategoryAddForm
-    success_url =reverse_lazy("home")
+    form_class =MembershipAddForm
+    success_url =reverse_lazy("manage-memberships")
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["categories"]=Categories.objects.all()
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context["categories"]=Memberships.objects.all()
+    #     return context
     
 
     
