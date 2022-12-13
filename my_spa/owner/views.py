@@ -46,47 +46,6 @@ class AddSlots(TemplateView):
         print("Fetched data is ",data)
         return redirect("home")
 
-#path("slots/update", views.UpdateSlots.as_view(), name="update-slot"),
-class UpdateSlots(FormView):
-    form_class = AddSlotForm
-    template_name = "update-slots.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # all_services = Services.objects.all()
-        # context["services"] = all_services
-        a=Timeslots.objects.all()
-        a1=a[::1]
-        p=[i for i in a1 if i!=1 ]
-        context["slots"]=p
-        return context
-
-
-    def post(self, request, *args, **kwargs):
-        id=kwargs.get("sid")
-        service=Services.objects.filter(id=id)
-
-        del_slot=request.POST.get("slot")
-        # slot = request.POST['timeslot']
-        slot = request.POST.get('timeslot')
-        booked_slot=BookedSlot.objects.filter(booked_slots=slot)
-        print(booked_slot)
-
-        print("Fetched slot is : ",slot)
-        print("Slot to remove : ", del_slot)
-        if slot:
-            if booked_slot:
-                msg="Sorry! Selected slot already booked by an user"
-                messages.warning(request,msg)
-                return redirect("update-slot")
-            else:
-                Timeslots.objects.create(time=slot)
-                messages.success(request,"Selected slot added successfully")
-                return redirect("update-slot")
-        else:
-            Timeslots.objects.filter(time=del_slot).delete()
-            messages.warning(request, "Selected slot removed successfully")
-            return redirect("update-slot")
 
 #Categories
 class ManageCategoriesView(TemplateView):
@@ -183,6 +142,48 @@ class AddBeauticiansView(CreateView):
         context = super().get_context_data(**kwargs)
         context["beauticians"]=Beautician.objects.all()
         return context
+
+#Timeslots
+
+#path("slots/update", views.UpdateSlots.as_view(), name="update-slot"),
+class UpdateSlots(FormView):
+    form_class = AddSlotForm
+    template_name = "update-slots.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        a=Timeslots.objects.all()
+        a1=a[::1]
+        p=[i for i in a1 if i!=1 ]
+        context["slots"]=p
+        return context
+
+
+    def post(self, request, *args, **kwargs):
+        id=kwargs.get("sid")
+        service=Services.objects.filter(id=id)
+
+        del_slot=request.POST.get("slot")
+        # slot = request.POST['timeslot']
+        slot = request.POST.get('timeslot')
+        booked_slot=BookedSlot.objects.filter(booked_slots=slot)
+        print(booked_slot)
+
+        print("Fetched slot is : ",slot)
+        print("Slot to remove : ", del_slot)
+        if slot:
+            if booked_slot:
+                msg="Sorry! Selected slot already booked by an user"
+                messages.warning(request,msg)
+                return redirect("update-slot")
+            else:
+                Timeslots.objects.create(time=slot)
+                messages.success(request,"Selected slot added successfully")
+                return redirect("update-slot")
+        else:
+            Timeslots.objects.filter(time=del_slot).delete()
+            messages.warning(request, "Selected slot removed successfully")
+            return redirect("update-slot")
 
         
     
