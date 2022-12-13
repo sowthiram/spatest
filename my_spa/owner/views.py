@@ -88,40 +88,50 @@ class UpdateSlots(FormView):
             messages.warning(request, "Selected slot removed successfully")
             return redirect("update-slot")
 
-#path("category/add", views.AddCategories.as_view(), name="add-category"),
-class AddCategories(CreateView):
-    template_name = "add-categories.html"
-    form_class =CategoryAddForm
-    success_url =reverse_lazy("home")
+#Categories
+class ManageCategoriesView(TemplateView):
+    model=Categories
+    template_name = "manage-categories.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["categories"]=Categories.objects.all()
         return context
 
-    # def post(self, request, *args, **kwargs):
-    #     form = forms.CategoryAddForm(request.POST)
-    #     if form.is_valid():
-    #         category_name = form.cleaned_data.get("category_name")
-    #         description = form.cleaned_data.get("description")
-    #         status = form.cleaned_data.get("status")
-    #         image = form.cleaned_data.get("image")
-    #         print(category_name,description,status,image)
-    #         Categories.objects.create(category_name=category_name,description=description,status=status,image=image)
-    #         msg=category_name,"added succesfully"
-    #         messages.success(request,msg)
-    #         return redirect("home")
+class AddCategoriesView(CreateView):
+    template_name = "add-categories.html"
+    form_class =CategoryAddForm
+    success_url =reverse_lazy("manage-categories")
 
-# path("services/add", views.AddServices.as_view(), name="add-service"),
-class ManageServices(CreateView):
-    form_class = ServiceAddForm
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"]=Categories.objects.all()
+        return context
+
+#Services
+class ManageServicesView(TemplateView):
+    model=Services
     template_name = "manage-services.html"
-    success_url = reverse_lazy("home")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["services"]=Services.objects.all()
         return context
+
+class AddServicesView(FormView):
+    template_name = "add-services.html"
+    form_class =ServiceAddForm
+    success_url =reverse_lazy("manage-services")
+
+    def post(self, request,*args,**kwargs):
+        form=ServiceAddForm(request.POST,request.FILES)
+        if form.is_valid:
+            form.save()
+            messages.success(request,"Service created Successfully")
+            return render(request,"manage-services.html")
+        else:
+            messages.warning(request,"Service creation failed")
+            return redirect("manage-services")
     
 class ServiceView(DetailView):
     model=Services
@@ -129,18 +139,23 @@ class ServiceView(DetailView):
     context_object_name= "service"
     pk_url_kwarg="sid"
 
-class ManageMemberships(TemplateView):
+#Memberships
+class ManageMembershipsView(TemplateView):
     model=Memberships
     template_name="manage-memberships.html"
-    context_object_name= "membership"
 
-class AddMemberships(FormView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["membership"]=Memberships.objects.all()
+        return context
+
+class AddMembershipsView(FormView):
     template_name = "add-memberships.html"
     form_class =MembershipAddForm
     success_url =reverse_lazy("manage-memberships")
 
     def post(self, request,*args,**kwargs):
-        form=MembershipAddForm(request.POST)
+        form=MembershipAddForm(request.POST,request.FILES)
         if form.is_valid:
             form.save()
             messages.success(request,"Membership created Successfully")
@@ -148,6 +163,27 @@ class AddMemberships(FormView):
         else:
             messages.warning(request,"Membership creation failed")
             return redirect("manage-memberships")
+
+#Beauticians
+class ManageBeauticiansView(TemplateView):
+    model=Beautician
+    template_name = "manage-beauticians.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["beauticians"]=Beautician.objects.all()
+        return context
+
+class AddBeauticiansView(CreateView):
+    template_name = "add-beauticians.html"
+    form_class =BeauticianAddForm
+    success_url =reverse_lazy("manage-beauticians")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["beauticians"]=Beautician.objects.all()
+        return context
+
         
     
 

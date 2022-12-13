@@ -21,3 +21,8 @@ class MembershipAddForm(forms.ModelForm):
     class Meta:
         model= Memberships
         fields ='__all__'
+
+class BeauticianAddForm(forms.ModelForm):
+    class Meta:
+        model= Beautician
+        fields ='__all__'

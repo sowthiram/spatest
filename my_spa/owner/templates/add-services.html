@@ -2,12 +2,12 @@
 {%block body%}
 <div class="content-wrapper">
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Memberships / Manage Memberships/</span> Add Memberships</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Services / Manage Services/</span> Add Services</h4>
 <form action="" method="post">
     {%csrf_token%}
     {{form.as_p}}
     <button type="submit" class="btn btn-success">Add Membership</button>
-    <a href="{%url 'manage-memberships'%}" class="btn btn-outline-info">Cancel & Go back</a>
+    <a href="{%url 'manage-services'%}" class="btn btn-outline-info">Cancel & Go back</a>
     
 </form>
 </div>
