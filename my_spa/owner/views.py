@@ -139,10 +139,16 @@ class AddMemberships(FormView):
     form_class =MembershipAddForm
     success_url =reverse_lazy("manage-memberships")
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context["categories"]=Memberships.objects.all()
-    #     return context
+    def post(self, request,*args,**kwargs):
+        form=MembershipAddForm(request.POST)
+        if form.is_valid:
+            form.save()
+            messages.success(request,"Membership created Successfully")
+            return render(request,"manage-memberships.html")
+        else:
+            messages.warning(request,"Membership creation failed")
+            return redirect("manage-memberships")
+        
     
 
     

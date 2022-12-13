@@ -20,5 +20,4 @@ class ServiceAddForm(forms.ModelForm):
 class MembershipAddForm(forms.ModelForm):
     class Meta:
         model= Memberships
-        fields = ['name','validity','price','desc','image','status']
-        
+        fields ='__all__'
