@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from customer.models import *
+from owner.models import *
 
 class AddSlotForm(forms.Form):
 
@@ -15,3 +16,9 @@ class ServiceAddForm(forms.ModelForm):
     class Meta:
         model= Services
         fields = ['name','category','image','duration','cost','description','beautician','status','timeslots']
+
+class MembershipAddForm(forms.ModelForm):
+    class Meta:
+        model= Memberships
+        fields = ['name','validity','price','desc','image','status']
+        

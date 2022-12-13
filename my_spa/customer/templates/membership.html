@@ -53,8 +53,8 @@ body {
     <br>
     <br>
 {%if memberships%}
-{%for membership in memberships%}
 <div class="row">
+{%for membership in memberships%}
   <div class="column">
     <div class="card">
       <h3>{{membership.name}}</h3>
@@ -64,10 +64,10 @@ body {
       <button type="button" class="btn btn-danger">Buy Now</button>
     </div>
   </div>
+{%endfor%}
 </div>
 </body>
 </html>
-{%endfor%}
 {%else%}
 <div class="py-5">
     <div class="row justify-content-center mb-3">
