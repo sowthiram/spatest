@@ -1,0 +1,17 @@
+{%extends 'index.html'%}
+{%block body_block %}
+
+<div class="container-fluid">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <form action="" method="post">
+                {%csrf_token%}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-outline-success">Update Slot</button>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+{%endblock%}
