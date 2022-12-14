@@ -37,6 +37,12 @@ class Beautician(models.Model):
 
 class Timeslots(models.Model):
     time=models.CharField(max_length=200,unique=True)
+    options=(
+        ("available","available"),
+        ("pending","pending"),
+        ("booked","booked"),)
+
+    status=models.CharField(max_length=100,choices=options,default="available")
 
     def __str__(self):
         return self.time

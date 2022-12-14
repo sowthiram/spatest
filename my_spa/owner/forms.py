@@ -3,9 +3,11 @@ from django.forms import ModelForm
 from customer.models import *
 from owner.models import *
 
-class AddSlotForm(forms.Form):
-
-    timeslot=forms.ChoiceField(choices=Services.SERVICE_TIMESLOT_LIST,required=True)
+class SlotAddForm(forms.ModelForm):
+    class Meta:
+        model=Timeslots
+        fields=['time','status']
+    # timeslot=forms.ChoiceField(choices=Services.SERVICE_TIMESLOT_LIST,required=True)
 
 class CategoryAddForm(forms.ModelForm):
     class Meta:

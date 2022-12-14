@@ -4,8 +4,8 @@ from owner import views
 
 urlpatterns=[
     path("", views.DashboardView.as_view(), name="dashboard"),
-    path("slots", views.AddSlots.as_view(), name="add-slot"),
-    path("slots/update", views.UpdateSlots.as_view(), name="update-slot"),
+    path("slots/add", views.AddTimeslotsView.as_view(), name="add-timeslots"),
+    path("slots/manage", views.ManageTimeslotsView.as_view(), name="manage-timeslots"),
     path("categories/manage", views.ManageCategoriesView.as_view(), name="manage-categories"),
     path("categories/add", views.AddCategoriesView.as_view(), name="add-categories"),
     path("services/manage", views.ManageServicesView.as_view(), name="manage-services"),
