@@ -3,7 +3,7 @@
 <div class="content-wrapper">
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Services / Manage Services/</span> Add Services</h4>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {%csrf_token%}
     {{form.as_p}}
     <button type="submit" class="btn btn-success">Add Service</button>

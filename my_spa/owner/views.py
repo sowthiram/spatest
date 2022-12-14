@@ -189,7 +189,7 @@ class AddTimeslotsView(CreateView):
         if form.is_valid:
             form.save()
             messages.success(request,"Timeslot created Successfully")
-            return render(request,"manage-timeslots.html")
+            return redirect("manage-timeslots")
         else:
             messages.warning(request,"Timeslot creation failed")
             return redirect("manage-timeslots")
