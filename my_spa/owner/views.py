@@ -3,7 +3,7 @@ from customer.models import *
 from owner.models import *
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate,login,logout
-from django.views.generic import CreateView,TemplateView,FormView,DetailView,ListView,UpdateView,RedirectView,View
+from django.views.generic import CreateView,TemplateView,FormView,DetailView,ListView,UpdateView,RedirectView,View,DeleteView
 from django.contrib import messages
 from owner.forms import*
 
@@ -122,6 +122,13 @@ class AddMembershipsView(FormView):
         else:
             messages.warning(request,"Membership creation failed")
             return redirect("manage-memberships")
+
+class DeleteMembershipView(DeleteView):
+    model=Memberships
+    pk_url_kwarg="mid"
+    success_url="manage-memberships"
+    template_name="confirm-delete.html"
+
 
 #Beauticians
 class ManageBeauticiansView(TemplateView):

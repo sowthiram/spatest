@@ -14,6 +14,7 @@ urlpatterns=[
     path("account", views.AdminAccountView.as_view(), name="account-settings"),
     path("memberships/manage", views.ManageMembershipsView.as_view(), name="manage-memberships"),
     path("memberships/add", views.AddMembershipsView.as_view(), name="add-memberships"),
+    path("memberships/<int:mid>/delete", views.DeleteMembershipView.as_view(), name="delete-memberships"),
     path("beauticians/manage", views.ManageBeauticiansView.as_view(), name="manage-beauticians"),
     path("beauticians/add", views.AddBeauticiansView.as_view(), name="add-beauticians")
 ]
