@@ -118,7 +118,7 @@ class AddMembershipsView(FormView):
         if form.is_valid:
             form.save()
             messages.success(request,"Membership created Successfully")
-            return render(request,"manage-memberships.html")
+            return redirect("manage-memberships")
         else:
             messages.warning(request,"Membership creation failed")
             return redirect("manage-memberships")
@@ -126,7 +126,7 @@ class AddMembershipsView(FormView):
 class DeleteMembershipView(DeleteView):
     model=Memberships
     pk_url_kwarg="mid"
-    success_url="manage-memberships"
+    success_url=reverse_lazy("manage-memberships")
     template_name="confirm-delete.html"
 
 

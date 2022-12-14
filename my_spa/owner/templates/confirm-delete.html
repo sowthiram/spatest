@@ -1,11 +1,11 @@
 {%extends 'base1.html'%}
-{%block body%}
-<div class="row">
+{%block body %}
+<div class="">
     <div class="col-4"></div>
     <div class="col-4">
         <h3>Are you sure?</h3>
         <form action="" method="post">
-            {%csrf_token%}
+        {%csrf_token%}
         <button type="submit">Confirm</button>
     </div>
     <div class="col-4"></div>

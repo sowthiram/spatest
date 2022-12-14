@@ -11,7 +11,7 @@ class Categories(models.Model):
     description=models.CharField(max_length=200,null=True,blank=True)
     status=models.BooleanField(default=True)
     created_date=models.DateTimeField(auto_now_add=True,null=True)
-    image=models.ImageField(upload_to="images",null=True,blank=True)
+    image=models.ImageField(upload_to="images/",null=True,blank=True)
 
     def __str__(self):
         return self.category_name
@@ -51,7 +51,7 @@ class Timeslots(models.Model):
 class Services(models.Model):
     name=models.CharField(max_length=200)
     category=models.ForeignKey(Categories,on_delete=models.CASCADE)
-    image=models.ImageField(upload_to="images",null=True)
+    image=models.ImageField(upload_to="images/",null=True)
     duration=models.DurationField(null=True, blank=True)
     cost=models.PositiveIntegerField()
     description=models.CharField(max_length=250,null=True,blank=True)
