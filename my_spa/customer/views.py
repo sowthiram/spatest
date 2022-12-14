@@ -177,4 +177,8 @@ class MembershipView(ListView):
     template_name="membership.html"
     model=Memberships
     context_object_name= "memberships"
+
+
+def booknow(request):
+    return render(request, "booknow.html")
     
