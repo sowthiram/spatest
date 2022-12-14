@@ -1,28 +1,31 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from customer.models import *
 from owner.models import *
 from django.urls import reverse_lazy
-from django.contrib.auth import authenticate,login,logout
-from django.views.generic import CreateView,TemplateView,FormView,DetailView,ListView,UpdateView,RedirectView,View,DeleteView
+from django.contrib.auth import authenticate, login, logout
+from django.views.generic import CreateView, TemplateView, FormView, DetailView, ListView, UpdateView, RedirectView, View, DeleteView
 from django.contrib import messages
-from owner.forms import*
+from owner.forms import *
 
 # Create your views here.
 
+
 class DashboardView(TemplateView):
-    template_name="index.html"
-    def get_context_data(self,*args,**kwargs):
+    template_name = "index.html"
+
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["bookings"]=Booking.objects.all()
+        context["bookings"] = Booking.objects.all()
         return context
+
 
 class AdminAccountView(TemplateView):
-    template_name="account-settings.html"
-    def get_context_data(self,*args,**kwargs):
-        context = super().get_context_data(**kwargs)
-        context["services"]=Services.objects.all()
-        return context
+    template_name = "account-settings.html"
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["services"] = Services.objects.all()
+        return context
 
 
 #path("slots", views.AddSlots.as_view(), name="add-slot")
@@ -31,168 +34,180 @@ class AdminAccountView(TemplateView):
 class AddSlots(TemplateView):
     template_name = "add-slots.html"
 
-    def get_context_data(self,request,*args,**kwargs):
+    def get_context_data(self, request, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         all_services = Services.objects.all()
         context["services"] = all_services
-        a=Timeslots.objects.all()
-        a1=a[::1]
-        p=[i for i in a1 if i!=1 ]
-        context["slots"]=p
+        a = Timeslots.objects.all()
+        a1 = a[::1]
+        p = [i for i in a1 if i != 1]
+        context["slots"] = p
         return context
 
-    def post(self,request,*args,**kwargs):
-        data=request.POST.get("slot")
-        print("Fetched data is ",data)
+    def post(self, request, *args, **kwargs):
+        data = request.POST.get("slot")
+        print("Fetched data is ", data)
         return redirect("home")
 
 
 #Categories
 class ManageCategoriesView(TemplateView):
-    model=Categories
+    model = Categories
     template_name = "manage-categories.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["categories"]=Categories.objects.all()
+        context["categories"] = Categories.objects.all()
         return context
+
 
 class AddCategoriesView(CreateView):
     template_name = "add-categories.html"
-    form_class =CategoryAddForm
-    success_url =reverse_lazy("manage-categories")
+    form_class = CategoryAddForm
+    success_url = reverse_lazy("manage-categories")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["categories"]=Categories.objects.all()
+        context["categories"] = Categories.objects.all()
         return context
+
 
 #Services
 class ManageServicesView(TemplateView):
-    model=Services
+    model = Services
     template_name = "manage-services.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["services"]=Services.objects.all()
+        context["services"] = Services.objects.all()
         return context
+
 
 class AddServicesView(FormView):
     template_name = "add-services.html"
-    form_class =ServiceAddForm
-    success_url =reverse_lazy("manage-services")
+    form_class = ServiceAddForm
+    success_url = reverse_lazy("manage-services")
 
-    def post(self, request,*args,**kwargs):
-        form=ServiceAddForm(request.POST,request.FILES)
+    def post(self, request, *args, **kwargs):
+        form = ServiceAddForm(request.POST, request.FILES)
         if form.is_valid:
             form.save()
-            messages.success(request,"Service created Successfully")
+            messages.success(request, "Service created Successfully")
             return redirect("manage-services")
         else:
-            messages.warning(request,"Service creation failed")
+            messages.warning(request, "Service creation failed")
             return redirect("manage-services")
-    
+
+
 class ServiceView(DetailView):
-    model=Services
-    template_name="service-view.html"
-    context_object_name= "service"
-    pk_url_kwarg="sid"
+    model = Services
+    template_name = "service-view.html"
+    context_object_name = "service"
+    pk_url_kwarg = "sid"
+
 
 #Memberships
 class ManageMembershipsView(TemplateView):
-    model=Memberships
-    template_name="manage-memberships.html"
+    model = Memberships
+    template_name = "manage-memberships.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["membership"]=Memberships.objects.all()
+        context["membership"] = Memberships.objects.all()
         return context
+
 
 class AddMembershipsView(FormView):
     template_name = "add-memberships.html"
-    form_class =MembershipAddForm
-    success_url =reverse_lazy("manage-memberships")
+    form_class = MembershipAddForm
+    success_url = reverse_lazy("manage-memberships")
 
-    def post(self, request,*args,**kwargs):
-        form=MembershipAddForm(request.POST,request.FILES)
+    def post(self, request, *args, **kwargs):
+        form = MembershipAddForm(request.POST, request.FILES)
         if form.is_valid:
             form.save()
-            messages.success(request,"Membership created Successfully")
+            messages.success(request, "Membership created Successfully")
             return redirect("manage-memberships")
         else:
-            messages.warning(request,"Membership creation failed")
+            messages.warning(request, "Membership creation failed")
             return redirect("manage-memberships")
 
+
 class DeleteMembershipView(DeleteView):
-    model=Memberships
-    pk_url_kwarg="mid"
-    success_url=reverse_lazy("manage-memberships")
-    template_name="confirm-delete.html"
+    model = Memberships
+    pk_url_kwarg = "mid"
+    success_url = reverse_lazy("manage-memberships")
+    template_name = "confirm-delete.html"
 
 
 #Beauticians
 class ManageBeauticiansView(TemplateView):
-    model=Beautician
+    model = Beautician
     template_name = "manage-beauticians.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["beauticians"]=Beautician.objects.all()
+        context["beauticians"] = Beautician.objects.all()
         return context
+
 
 class AddBeauticiansView(CreateView):
     template_name = "add-beauticians.html"
-    form_class =BeauticianAddForm
-    success_url =reverse_lazy("manage-beauticians")
+    form_class = BeauticianAddForm
+    success_url = reverse_lazy("manage-beauticians")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["beauticians"]=Beautician.objects.all()
+        context["beauticians"] = Beautician.objects.all()
 
-        category=Beautician.objects.filter(category__category_name="Manicure")
-        print("Category is: ",category)
-        
+        category = Beautician.objects.filter(
+            category__category_name="Manicure")
+        print("Category is: ", category)
+
         return context
 
-    def post(self, request,*args,**kwargs):
-        form=BeauticianAddForm(request.POST)
+    def post(self, request, *args, **kwargs):
+        form = BeauticianAddForm(request.POST)
         if form.is_valid:
             form.save()
-            messages.success(request,"Beautician added Successfully")
-            return render(request,"manage-beauticians.html")
+            messages.success(request, "Beautician added Successfully")
+            return render(request, "manage-beauticians.html")
         else:
-            messages.warning(request,"Beautician creation failed")
+            messages.warning(request, "Beautician creation failed")
             return redirect("manage-beauticians")
+
 
 #Timeslots
 class ManageTimeslotsView(TemplateView):
-    model=Timeslots
+    model = Timeslots
     template_name = "manage-timeslots.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["timeslots"]=Timeslots.objects.all()
+        context["timeslots"] = Timeslots.objects.all()
         return context
+
 
 class AddTimeslotsView(CreateView):
     template_name = "add-timeslots.html"
-    form_class =SlotAddForm
-    success_url =reverse_lazy("manage-timeslots")
+    form_class = SlotAddForm
+    success_url = reverse_lazy("manage-timeslots")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["timeslots"]=Timeslots.objects.all()
+        context["timeslots"] = Timeslots.objects.all()
         return context
-    
-    def post(self, request,*args,**kwargs):
-        form=SlotAddForm(request.POST)
+
+    def post(self, request, *args, **kwargs):
+        form = SlotAddForm(request.POST)
         if form.is_valid:
             form.save()
-            messages.success(request,"Timeslot created Successfully")
+            messages.success(request, "Timeslot created Successfully")
             return redirect("manage-timeslots")
         else:
-            messages.warning(request,"Timeslot creation failed")
+            messages.warning(request, "Timeslot creation failed")
             return redirect("manage-timeslots")
+
 
 # #path("slots/update", views.UpdateSlots.as_view(), name="update-slot"),
 # class UpdateSlots(FormView):
@@ -207,7 +222,6 @@ class AddTimeslotsView(CreateView):
 #         p=[i for i in a1 if i!=1 ]
 #         context["slots"]=p
 #         return context
-
 
 #     def post(self, request, *args, **kwargs):
 #         id=kwargs.get("sid")
@@ -234,8 +248,3 @@ class AddTimeslotsView(CreateView):
 #             Timeslots.objects.filter(time=del_slot).delete()
 #             messages.warning(request, "Selected slot removed successfully")
 #             return redirect("update-slot")
-
-        
-    
-
-    
