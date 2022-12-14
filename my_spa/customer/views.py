@@ -173,7 +173,8 @@ class ShopView(TemplateView):
             print("No category")
             return render(request,"shop.html",{"services":None,"categories":categories})
 
-class MembershipView(TemplateView):
+class MembershipView(ListView):
     template_name="membership.html"
     model=Memberships
     context_object_name= "memberships"
+    
