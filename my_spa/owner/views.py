@@ -87,7 +87,7 @@ class AddServicesView(FormView):
         if form.is_valid:
             form.save()
             messages.success(request,"Service created Successfully")
-            return render(request,"manage-services.html")
+            return redirect("manage-services")
         else:
             messages.warning(request,"Service creation failed")
             return redirect("manage-services")
