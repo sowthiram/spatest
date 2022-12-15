@@ -28,15 +28,12 @@ urlpatterns=[
     path("packages/add", views.AddPackagesView.as_view(), name="add-packages"),
     path("beauticians/<int:bid>", views.DetailBeauticianView.as_view(), name="beautician-view"),
     path("categories/<int:cid>", views.DetailCategoryView.as_view(), name="view-category"),
-<<<<<<< HEAD
     path("bookings/manage", views.ManageBookingsView.as_view(), name="manage-bookings"),
-=======
     path("memberships/<int:mid>/update", views.UpdateMembershipView.as_view(), name="update-membership"),
     path("services/<int:sid>/update", views.UpdateServiceView.as_view(), name="update-service"),
     path("categories/<int:cid>/update", views.UpdateCategoryView.as_view(), name="update-category")
 
 
->>>>>>> 3cfb283db8899d776ebc82cd55407c2a22fa4a5a
 
 
 ]
