@@ -318,3 +318,16 @@ class UpdateMembershipView(UpdateView):
     def form_valid(self, form):
         messages.success(self.request, "Membership  updated successfully")
         return super().form_valid(form)
+
+
+class UpdateServiceView(UpdateView):
+    model = Services
+    template_name = "update-service.html"
+    pk_url_kwarg = "sid"
+    success_url = reverse_lazy("manage-services")
+    form_class = UpdateServiceForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Service  updated successfully")
+        return super().form_valid(form)
+

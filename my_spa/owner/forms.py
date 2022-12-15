@@ -34,3 +34,9 @@ class UpdateMembershipForm(forms.ModelForm):
     class Meta:
         model=Memberships
         fields=["name", "validity", "price","desc", "image", "status"]
+
+
+class UpdateServiceForm(forms.ModelForm):
+    class Meta:
+        model=Services
+        fields=["name", "category", "image","duration", "cost", "description","beautician", "rating","timeslots", "status"]
