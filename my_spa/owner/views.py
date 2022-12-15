@@ -306,3 +306,15 @@ class DetailCategoryView(DetailView):
     template_name = "category-view.html"
     pk_url_kwarg = "cid"
     context_object_name = "category"
+
+
+class UpdateMembershipView(UpdateView):
+    model = Memberships
+    template_name = "update-membership.html"
+    pk_url_kwarg = "mid"
+    success_url = reverse_lazy("manage-memberships")
+    form_class = UpdateMembershipForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Membership  updated successfully")
+        return super().form_valid(form)

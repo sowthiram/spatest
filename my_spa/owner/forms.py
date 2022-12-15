@@ -28,3 +28,9 @@ class BeauticianAddForm(forms.ModelForm):
     class Meta:
         model= Beautician
         fields ='__all__'
+
+
+class UpdateMembershipForm(forms.ModelForm):
+    class Meta:
+        model=Memberships
+        fields=["name", "validity", "price","desc", "image", "status"]
