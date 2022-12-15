@@ -237,10 +237,10 @@ class AddTimeslotsView(CreateView):
             messages.warning(request, "Timeslot creation failed")
             return redirect("manage-timeslots")
 
-class DeleteBeauticianView(DeleteView):
-    model = Beautician
-    pk_url_kwarg = "bid"
-    success_url = reverse_lazy("manage-beautician")
+class DeleteTimeslotsView(DeleteView):
+    model = Timeslots
+    pk_url_kwarg = "tid"
+    success_url = reverse_lazy("manage-timeslots")
     template_name = "confirm-delete.html"
 
 
