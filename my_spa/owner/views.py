@@ -199,6 +199,12 @@ class AddBeauticiansView(CreateView):
             messages.warning(request, "Beautician creation failed")
             return redirect("manage-beauticians")
 
+class DeleteBeauticianView(DeleteView):
+    model = Beautician
+    pk_url_kwarg = "bid"
+    success_url = reverse_lazy("manage-beautician")
+    template_name = "confirm-delete.html"
+
 
 #Timeslots
 class ManageTimeslotsView(TemplateView):
@@ -230,6 +236,14 @@ class AddTimeslotsView(CreateView):
         else:
             messages.warning(request, "Timeslot creation failed")
             return redirect("manage-timeslots")
+
+class DeleteBeauticianView(DeleteView):
+    model = Beautician
+    pk_url_kwarg = "bid"
+    success_url = reverse_lazy("manage-beautician")
+    template_name = "confirm-delete.html"
+
+
 
 
 # #path("slots/update", views.UpdateSlots.as_view(), name="update-slot"),
