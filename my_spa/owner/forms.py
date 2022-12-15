@@ -28,3 +28,8 @@ class BeauticianAddForm(forms.ModelForm):
     class Meta:
         model= Beautician
         fields ='__all__'
+
+class PackageAddForm(forms.ModelForm):
+    class Meta:
+        model= Package
+        fields ='__all__'

@@ -24,4 +24,6 @@ urlpatterns=[
     path("timeslots/manage", views.ManageTimeslotsView.as_view(), name="manage-timeslots"),
     path("timeslots/add", views.AddTimeslotsView.as_view(), name="add-timeslots"),
     path("timeslots/<int:tid>/delete", views.DeleteTimeslotsView.as_view(), name="delete-timeslots"),
+    path("packages/manage", views.ManagePackagesView.as_view(), name="manage-packages"),
+    path("packages/add", views.AddPackagesView.as_view(), name="add-packages"),
 ]
