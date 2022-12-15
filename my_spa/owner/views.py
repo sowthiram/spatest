@@ -294,6 +294,7 @@ class DetailMembershipView(DetailView):
     context_object_name = "membership"
 
 
+<<<<<<< HEAD
 #Packages
 class ManagePackagesView(TemplateView):
     model = Package
@@ -319,3 +320,54 @@ class AddPackagesView(FormView):
             messages.warning(request, "Package creation failed")
             return redirect("manage-packages")
 
+=======
+class DetailBeauticianView(DetailView):
+    model = Beautician
+    template_name = "beautician-view.html"
+    pk_url_kwarg = "bid"
+    context_object_name = "beautician"
+
+
+class DetailCategoryView(DetailView):
+    model = Categories
+    template_name = "category-view.html"
+    pk_url_kwarg = "cid"
+    context_object_name = "category"
+
+
+class UpdateMembershipView(UpdateView):
+    model = Memberships
+    template_name = "update-membership.html"
+    pk_url_kwarg = "mid"
+    success_url = reverse_lazy("manage-memberships")
+    form_class = UpdateMembershipForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Membership  updated successfully")
+        return super().form_valid(form)
+
+
+class UpdateServiceView(UpdateView):
+    model = Services
+    template_name = "update-service.html"
+    pk_url_kwarg = "sid"
+    success_url = reverse_lazy("manage-services")
+    form_class = UpdateServiceForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Service  updated successfully")
+        return super().form_valid(form)
+
+
+
+class UpdateCategoryView(UpdateView):
+    model = Categories
+    template_name = "update-category.html"
+    pk_url_kwarg = "cid"
+    success_url = reverse_lazy("manage-categories")
+    form_class = UpdateCategoryForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Category  updated successfully")
+        return super().form_valid(form)
+>>>>>>> ae089baf5c8101d8f6744a800b7d73180ab1a68b
