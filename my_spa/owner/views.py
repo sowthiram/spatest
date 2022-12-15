@@ -70,6 +70,22 @@ class AddCategoriesView(CreateView):
         context = super().get_context_data(**kwargs)
         context["categories"] = Categories.objects.all()
         return context
+    
+    def post(self,request,*args,**kwargs):
+        form=CategoryAddForm(request.POST,request.FILES)
+        if form.is_valid:
+            form.save()
+            messages.success(request,"Categories added Successfully")
+            return redirect("manage-categories")
+        else:
+            messages.warning(request,"Categories added Failed")
+            return redirect("manage-categories")
+
+class DeleteCategoriesView(DeleteView):
+    model = Categories
+    pk_url_kwarg = "cid"
+    success_url = reverse_lazy("manage-categories")
+    template_name = "confirm-delete.html"
 
 
 #Services
@@ -97,6 +113,13 @@ class AddServicesView(FormView):
         else:
             messages.warning(request, "Service creation failed")
             return redirect("manage-services")
+
+class DeleteServicesView(DeleteView):
+    model = Services
+    pk_url_kwarg = "sid"
+    success_url = reverse_lazy("manage-services")
+    template_name = "confirm-delete.html"
+
 
 
 class ServiceView(DetailView):
@@ -176,6 +199,12 @@ class AddBeauticiansView(CreateView):
             messages.warning(request, "Beautician creation failed")
             return redirect("manage-beauticians")
 
+class DeleteBeauticianView(DeleteView):
+    model = Beautician
+    pk_url_kwarg = "bid"
+    success_url = reverse_lazy("manage-beautician")
+    template_name = "confirm-delete.html"
+
 
 #Timeslots
 class ManageTimeslotsView(TemplateView):
@@ -207,6 +236,14 @@ class AddTimeslotsView(CreateView):
         else:
             messages.warning(request, "Timeslot creation failed")
             return redirect("manage-timeslots")
+
+class DeleteTimeslotsView(DeleteView):
+    model = Timeslots
+    pk_url_kwarg = "tid"
+    success_url = reverse_lazy("manage-timeslots")
+    template_name = "confirm-delete.html"
+
+
 
 
 # #path("slots/update", views.UpdateSlots.as_view(), name="update-slot"),
