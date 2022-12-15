@@ -202,7 +202,7 @@ class AddBeauticiansView(CreateView):
 class DeleteBeauticianView(DeleteView):
     model = Beautician
     pk_url_kwarg = "bid"
-    success_url = reverse_lazy("manage-beautician")
+    success_url = reverse_lazy("manage-beauticians")
     template_name = "confirm-delete.html"
 
 

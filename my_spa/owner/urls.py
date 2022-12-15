@@ -19,5 +19,9 @@ urlpatterns=[
     path("memberships/<int:mid>/delete", views.DeleteMembershipView.as_view(), name="delete-memberships"),
     path("beauticians/manage", views.ManageBeauticiansView.as_view(), name="manage-beauticians"),
     path("beauticians/add", views.AddBeauticiansView.as_view(), name="add-beauticians"),
-    path("memberships/<int:mid>", views.DetailMembershipView.as_view(), name="membership-view")
+    path("beauticians/<int:bid>/delete", views.DeleteBeauticianView.as_view(), name="delete-beauticians"),
+    path("memberships/<int:mid>", views.DetailMembershipView.as_view(), name="membership-view"),
+    path("timeslots/manage", views.ManageTimeslotsView.as_view(), name="manage-timeslots"),
+    path("timeslots/add", views.AddTimeslotsView.as_view(), name="add-timeslots"),
+    path("timeslots/<int:tid>/delete", views.DeleteTimeslotsView.as_view(), name="delete-timeslots"),
 ]
