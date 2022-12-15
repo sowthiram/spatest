@@ -27,7 +27,9 @@ urlpatterns=[
     path("beauticians/<int:bid>", views.DetailBeauticianView.as_view(), name="beautician-view"),
     path("categories/<int:cid>", views.DetailCategoryView.as_view(), name="view-category"),
     path("memberships/<int:mid>/update", views.UpdateMembershipView.as_view(), name="update-membership"),
-    path("services/<int:sid>/update", views.UpdateServiceView.as_view(), name="update-service")
+    path("services/<int:sid>/update", views.UpdateServiceView.as_view(), name="update-service"),
+    path("categories/<int:cid>/update", views.UpdateCategoryView.as_view(), name="update-category")
+
 
 
 

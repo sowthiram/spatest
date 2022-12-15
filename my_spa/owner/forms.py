@@ -40,3 +40,9 @@ class UpdateServiceForm(forms.ModelForm):
     class Meta:
         model=Services
         fields=["name", "category", "image","duration", "cost", "description","beautician", "rating","timeslots", "status"]
+
+
+class UpdateCategoryForm(forms.ModelForm):
+    class Meta:
+        model=Categories
+        fields= '__all__'

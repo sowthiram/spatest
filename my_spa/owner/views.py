@@ -331,3 +331,15 @@ class UpdateServiceView(UpdateView):
         messages.success(self.request, "Service  updated successfully")
         return super().form_valid(form)
 
+
+
+class UpdateCategoryView(UpdateView):
+    model = Categories
+    template_name = "update-category.html"
+    pk_url_kwarg = "cid"
+    success_url = reverse_lazy("manage-categories")
+    form_class = UpdateCategoryForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Category  updated successfully")
+        return super().form_valid(form)
