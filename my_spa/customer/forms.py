@@ -27,9 +27,13 @@ class RegistrationForm(UserCreationForm):
 
         }
 
-class BookForm(forms.Form):
+# class BookForm(forms.Form):
 
-    timeslot=forms.ChoiceField(choices=Services.SERVICE_TIMESLOT_LIST,required=True)
+#     timeslot=forms.ChoiceField(choices=Services.SERVICE_TIMESLOT_LIST,required=True)
+
+class BookForm(forms.Form):
+    time=forms.CheckboxInput()
+
 
 
 

@@ -243,7 +243,15 @@ class DeleteTimeslotsView(DeleteView):
     success_url = reverse_lazy("manage-timeslots")
     template_name = "confirm-delete.html"
 
+# Bookings
+class ManageBookingsView(TemplateView):
+    model = Booking
+    template_name = "manage-bookings.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["bookings"] = Booking.objects.all()
+        return context
 
 
 # #path("slots/update", views.UpdateSlots.as_view(), name="update-slot"),

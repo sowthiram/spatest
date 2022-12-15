@@ -74,7 +74,7 @@
                   </div>
                   <h6 class="text-success">{{service.duration}} hrs</h6>
                   <div class="d-flex flex-column mt-4">
-                    <button class="btn btn-primary btn-sm" type="button">Details</button>
+                    <a href="{%url 'customer:book' service.id%}" class="btn btn-outline-success">Details</a>
                     <button class="btn btn-outline-primary btn-sm mt-2" type="button">
                       Add to wishlist
                     </button>

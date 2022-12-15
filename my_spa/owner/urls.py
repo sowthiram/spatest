@@ -26,6 +26,7 @@ urlpatterns=[
     path("timeslots/<int:tid>/delete", views.DeleteTimeslotsView.as_view(), name="delete-timeslots"),
     path("beauticians/<int:bid>", views.DetailBeauticianView.as_view(), name="beautician-view"),
     path("categories/<int:cid>", views.DetailCategoryView.as_view(), name="view-category"),
+    path("bookings/manage", views.ManageBookingsView.as_view(), name="manage-bookings"),
 
 
 ]
