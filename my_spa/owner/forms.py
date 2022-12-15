@@ -52,4 +52,3 @@ class UpdateCategoryForm(forms.ModelForm):
     class Meta:
         model=Categories
         fields= '__all__'
->>>>>>> ae089baf5c8101d8f6744a800b7d73180ab1a68b
