@@ -15,12 +15,13 @@
                                     <!-- Product price-->
                                      <strong>Service amount: {{service.cost}}</strong>
                                     <!-- Product category-->
-                                     <strong>Service Category: {{service.category}}</strong>
+                                     <p><strong>Service Category: {{service.category}}</strong></p>
                                     <!-- Service Duration-->
-                                     <strong>Service Duration: {{service.duration}}</strong>
+                                    <p><strong>Service Duration: {{service.duration}}</strong></p>
                                     <!-- Beauticians & slot-->
                                     <form action="" method="post">
                                         {%csrf_token%}
+                                        {{form.as_p}}
                                         
                                         <!-- Timeslots-->
                                     <label for=""><strong> Choose the Timeslot:</strong></label>
