@@ -294,6 +294,31 @@ class DetailMembershipView(DetailView):
     context_object_name = "membership"
 
 
+#Packages
+class ManagePackagesView(TemplateView):
+    model = Package
+    template_name = "manage-packages.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["packages"] = Package.objects.all()
+        return context
+
+class AddPackagesView(FormView):
+    template_name = "add-packages.html"
+    form_class = PackageAddForm
+    success_url = reverse_lazy("manage-packages")
+
+    def post(self, request, *args, **kwargs):
+        form = PackageAddForm(request.POST, request.FILES)
+        if form.is_valid:
+            form.save()
+            messages.success(request, "Package created Successfully")
+            return redirect("manage-packages")
+        else:
+            messages.warning(request, "Package creation failed")
+            return redirect("manage-packages")
+
 class DetailBeauticianView(DetailView):
     model = Beautician
     template_name = "beautician-view.html"
