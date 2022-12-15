@@ -29,12 +29,12 @@ class BeauticianAddForm(forms.ModelForm):
         model= Beautician
         fields ='__all__'
 
-<<<<<<< HEAD
+
 class PackageAddForm(forms.ModelForm):
     class Meta:
         model= Package
         fields ='__all__'
-=======
+
 
 class UpdateMembershipForm(forms.ModelForm):
     class Meta:
