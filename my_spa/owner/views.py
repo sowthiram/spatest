@@ -70,6 +70,22 @@ class AddCategoriesView(CreateView):
         context = super().get_context_data(**kwargs)
         context["categories"] = Categories.objects.all()
         return context
+    
+    def post(self,request,*args,**kwargs):
+        form=CategoryAddForm(request.POST,request.FILES)
+        if form.is_valid:
+            form.save()
+            messages.success(request,"Categories added Successfully")
+            return redirect("manage-categories")
+        else:
+            messages.warning(request,"Categories added Failed")
+            return redirect("manage-categories")
+
+class DeleteCategoriesView(DeleteView):
+    model = Categories
+    pk_url_kwarg = "cid"
+    success_url = reverse_lazy("manage-categories")
+    template_name = "confirm-delete.html"
 
 
 #Services
@@ -97,6 +113,13 @@ class AddServicesView(FormView):
         else:
             messages.warning(request, "Service creation failed")
             return redirect("manage-services")
+
+class DeleteServicesView(DeleteView):
+    model = Services
+    pk_url_kwarg = "sid"
+    success_url = reverse_lazy("manage-services")
+    template_name = "confirm-delete.html"
+
 
 
 class ServiceView(DetailView):
