@@ -271,3 +271,10 @@ class AddTimeslotsView(CreateView):
 #             Timeslots.objects.filter(time=del_slot).delete()
 #             messages.warning(request, "Selected slot removed successfully")
 #             return redirect("update-slot")
+
+
+class DetailMembershipView(DetailView):
+    model = Memberships
+    template_name = "membership-view.html"
+    pk_url_kwarg = "mid"
+    context_object_name = "membership"
