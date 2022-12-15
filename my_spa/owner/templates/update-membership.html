@@ -1,0 +1,20 @@
+{%extends 'base1.html'%}
+{%block body%}
+<div class="card mb-4">
+    <h5 class="card-header">Memebership Update</h5>
+                 <form action="" method="POST">
+                    {%csrf_token%}
+                    {{form.as_p}}
+                    <button type="submit" href="" class="btn btn-outline-success">Update</button>
+                 </form>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       
+     <!--/ Horizontal -->
+    
+    </div>
+
+          {%endblock%}
