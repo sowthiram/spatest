@@ -376,3 +376,28 @@ class UpdateCategoryView(UpdateView):
     def form_valid(self, form):
         messages.success(self.request, "Category  updated successfully")
         return super().form_valid(form)
+
+
+
+class UpdateBeauticianView(UpdateView):
+    model = Beautician
+    template_name = "update-beautician.html"
+    pk_url_kwarg = "bid"
+    success_url = reverse_lazy("manage-beauticians")
+    form_class = UpdateBeauticianForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Beautician  updated successfully")
+        return super().form_valid(form)
+
+
+class UpdateTimeslotView(UpdateView):
+    model = Beautician
+    template_name = "update-timeslot.html"
+    pk_url_kwarg = "tid"
+    success_url = reverse_lazy("manage-timeslots")
+    form_class = UpdateTimeslotForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Timeslot  updated successfully")
+        return super().form_valid(form)
