@@ -24,4 +24,8 @@ urlpatterns=[
     path("timeslots/manage", views.ManageTimeslotsView.as_view(), name="manage-timeslots"),
     path("timeslots/add", views.AddTimeslotsView.as_view(), name="add-timeslots"),
     path("timeslots/<int:tid>/delete", views.DeleteTimeslotsView.as_view(), name="delete-timeslots"),
+    path("beauticians/<int:bid>", views.DetailBeauticianView.as_view(), name="beautician-view"),
+    path("categories/<int:cid>", views.DetailCategoryView.as_view(), name="view-category"),
+
+
 ]

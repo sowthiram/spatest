@@ -292,3 +292,17 @@ class DetailMembershipView(DetailView):
     template_name = "membership-view.html"
     pk_url_kwarg = "mid"
     context_object_name = "membership"
+
+
+class DetailBeauticianView(DetailView):
+    model = Beautician
+    template_name = "beautician-view.html"
+    pk_url_kwarg = "bid"
+    context_object_name = "beautician"
+
+
+class DetailCategoryView(DetailView):
+    model = Categories
+    template_name = "category-view.html"
+    pk_url_kwarg = "cid"
+    context_object_name = "category"
