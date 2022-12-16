@@ -364,6 +364,34 @@ class AddGiftCardsView(FormView):
             messages.warning(request, "GiftCard creation failed")
             return redirect("manage-giftcards")
 
+
+class DetailGiftCardView(DetailView):
+    model = GiftCards
+    template_name = "view-giftcard.html"
+    pk_url_kwarg = "gid"
+    context_object_name = "giftcard"
+
+
+class UpdateGiftCardView(UpdateView):
+    model = GiftCards
+    template_name = "update-giftcard.html"
+    pk_url_kwarg = "gid"
+    success_url = reverse_lazy("manage-giftcards")
+    form_class = UpdateGiftCardForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "GiftCards  updated successfully")
+        return super().form_valid(form)
+
+
+class DeleteGiftCardView(DeleteView):
+    model = GiftCards
+    template_name = "confirm-delete.html"
+    pk_url_kwarg = "gid"
+    success_url = reverse_lazy("manage-giftcards")
+
+
+
 class DetailBeauticianView(DetailView):
     model = Beautician
     template_name = "beautician-view.html"

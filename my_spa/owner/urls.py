@@ -39,6 +39,12 @@ urlpatterns=[
     path("package/<int:pid>/delete", views.DeletePackageView.as_view(), name="delete-package"),
     path("giftcards/manage", views.ManageGiftCardsView.as_view(), name="manage-giftcards"),
     path("giftcards/add", views.AddGiftCardsView.as_view(), name="add-giftcards"),
+    path("giftcard/<int:gid>", views.DetailGiftCardView.as_view(), name="view-giftcard"),
+    path("giftcards/<int:gid>/update", views.UpdateGiftCardView.as_view(), name="update-giftcard"),
+    path("giftcards/<int:gid>/delete", views.DeleteGiftCardView.as_view(), name="delete-giftcard"),
+
+
+
 
 
 

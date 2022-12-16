@@ -76,3 +76,9 @@ class UpdatePackageForm(forms.ModelForm):
     class Meta:
         model=Package
         fields= '__all__'
+
+
+class UpdateGiftCardForm(forms.ModelForm):
+    class Meta:
+        model=GiftCards
+        fields= '__all__'
