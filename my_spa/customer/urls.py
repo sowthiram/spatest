@@ -13,6 +13,8 @@ urlpatterns=[
     path("shop", views.ShopView.as_view(), name="shop"),
     path("membership", views.MembershipView.as_view(), name="memberships"),
     path("booknow", views.booknow, name="booknow"),
-    path("packages", views.PackageView.as_view(), name="packages")
+    path("packages", views.PackageView.as_view(), name="packages"),
+    path("giftcards", views.GiftCardView.as_view(), name="giftcards"),
+
 
 ]

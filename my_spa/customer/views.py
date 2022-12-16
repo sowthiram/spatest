@@ -185,6 +185,13 @@ class PackageView(ListView):
     model = Package
     context_object_name = "packages"
 
+
+class GiftCardView(ListView):
+    model = GiftCards
+    template_name = "giftcard.html"
+    context_object_name = "giftcards"
+
+
 def booknow(request):
     return render(request, "booknow.html")
     
