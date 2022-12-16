@@ -29,13 +29,13 @@
       </tr>
     </thead>
     
-    {%for mem in packages%}
+    {%for package in packages%}
     <tbody class="table-border-bottom-0">
       <tr>
-        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{mem.name}}</strong></td>
-        <td>$ {{mem.price}}</td>
+        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{package.name}}</strong></td>
+        <td>$ {{package.price}}</td>
         <td><img
-          src="{{mem.image.url}}"
+          src="{{package.image.url}}"
           alt="user-avatar"
           class="d-block rounded"
           height="100"
@@ -43,22 +43,22 @@
           id="uploadedAvatar"
         /></td>
         <td>
-          {%if mem.status == True%}
+          {%if package.status == True%}
           <span class="badge bg-label-success me-1">Active</span>
           {%else%}
           <span class="badge bg-label-danger me-1">In-Active</span>
           {%endif%}
         </td>
-        <td> {{mem.timeslot}}</td>
+        <td> {{package.timeslot}}</td>
         <td>
           <div class="dropdown">
             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
               <i class="bx bx-dots-vertical-rounded"></i>
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href=""
+              <a class="dropdown-item" href="{%url 'view-package' package.id%}"
               ><i class="bx bx-info-circle me-1"></i> View</a>
-            <a class="dropdown-item" href=""
+            <a class="dropdown-item" href="{%url 'update-package' package.id%}"
             ><i class="bx bx-edit-alt me-1"></i> Edit</a>
             <a class="dropdown-item" href=""
               ><i class="bx bx-trash me-1"></i> Delete</a>

@@ -52,3 +52,21 @@ class UpdateCategoryForm(forms.ModelForm):
     class Meta:
         model=Categories
         fields= '__all__'
+
+
+class UpdateBeauticianForm(forms.ModelForm):
+    class Meta:
+        model=Beautician
+        fields= '__all__'
+
+
+class UpdateTimeslotForm(forms.ModelForm):
+    class Meta:
+        model=Timeslots
+        fields= '__all__'
+
+
+class UpdatePackageForm(forms.ModelForm):
+    class Meta:
+        model=Package
+        fields= '__all__'

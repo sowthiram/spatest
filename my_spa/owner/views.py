@@ -12,6 +12,8 @@ from owner.forms import *
 
 class DashboardView(TemplateView):
     template_name = "index.html"
+    # model = Services
+    # context_object_name= "service"
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -243,6 +245,7 @@ class DeleteTimeslotsView(DeleteView):
     success_url = reverse_lazy("manage-timeslots")
     template_name = "confirm-delete.html"
 
+
 # Bookings
 class ManageBookingsView(TemplateView):
     model = Booking
@@ -341,6 +344,13 @@ class DetailCategoryView(DetailView):
     context_object_name = "category"
 
 
+class DetailPackageView(DetailView):
+    model = Package
+    template_name = "view-package.html"
+    pk_url_kwarg = "pid"
+    context_object_name = "package"
+
+
 class UpdateMembershipView(UpdateView):
     model = Memberships
     template_name = "update-membership.html"
@@ -375,4 +385,41 @@ class UpdateCategoryView(UpdateView):
 
     def form_valid(self, form):
         messages.success(self.request, "Category  updated successfully")
+        return super().form_valid(form)
+
+
+
+class UpdateBeauticianView(UpdateView):
+    model = Beautician
+    template_name = "update-beautician.html"
+    pk_url_kwarg = "bid"
+    success_url = reverse_lazy("manage-beauticians")
+    form_class = UpdateBeauticianForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Beautician  updated successfully")
+        return super().form_valid(form)
+
+
+class UpdateTimeslotView(UpdateView):
+    model = Beautician
+    template_name = "update-timeslot.html"
+    pk_url_kwarg = "tid"
+    success_url = reverse_lazy("manage-timeslots")
+    form_class = UpdateTimeslotForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Timeslot  updated successfully")
+        return super().form_valid(form)
+
+
+class UpdatePackageView(UpdateView):
+    model = Package
+    template_name = "update-package.html"
+    pk_url_kwarg = "pid"
+    success_url = reverse_lazy("manage-packages")
+    form_class = UpdatePackageForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Package updated successfully")
         return super().form_valid(form)
