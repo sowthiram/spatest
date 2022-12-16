@@ -64,3 +64,9 @@ class UpdateTimeslotForm(forms.ModelForm):
     class Meta:
         model=Timeslots
         fields= '__all__'
+
+
+class UpdatePackageForm(forms.ModelForm):
+    class Meta:
+        model=Package
+        fields= '__all__'

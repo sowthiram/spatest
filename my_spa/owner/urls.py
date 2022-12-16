@@ -33,7 +33,11 @@ urlpatterns=[
     path("services/<int:sid>/update", views.UpdateServiceView.as_view(), name="update-service"),
     path("categories/<int:cid>/update", views.UpdateCategoryView.as_view(), name="update-category"),
     path("beautician/<int:bid>/update", views.UpdateBeauticianView.as_view(), name="update-beautician"),
-    path("timeslot/<int:tid>/update", views.UpdateTimeslotView.as_view(), name="update-timeslot")
+    path("timeslot/<int:tid>/update", views.UpdateTimeslotView.as_view(), name="update-timeslot"),
+    path("package/<int:pid>/update", views.UpdatePackageView.as_view(), name="update-package"),
+    path("package/<int:pid>", views.DetailPackageView.as_view(), name="view-package"),
+
+
 
 
 
