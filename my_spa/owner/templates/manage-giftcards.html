@@ -10,32 +10,32 @@
     <!-- Content -->
     
     <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Packages /</span> Manage Packages</h4>
-    <a href="{%url 'add-packages'%}" class="btn btn-outline-success">Add a Packages</a>
-{%if packages%} 
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Gift Cards /</span> Manage Gift Cards</h4>
+    <a href="{%url 'add-giftcards'%}" class="btn btn-outline-success">Add a Gift Card</a>
+{%if giftcards%} 
     <!-- Basic Bootstrap Table -->
     <div class="card">
-    <h5 class="card-header">Service Details</h5>
+    <h5 class="card-header">Gift Card Details</h5>
     <div class="table-responsive text-nowrap">
     <table class="table">
     <thead>
       <tr>
-        <th>Packages</th>
+        <th>Gift Card</th>
         <th>Price</th>
         <th>Image</th>
         <th>Status</th>
-        <th>Timeslot</th>
-        <th>Actions</th>
+        <th>Validity</th>
+        <th>Action</th>
       </tr>
     </thead>
     
-    {%for package in packages%}
+    {%for giftcard in giftcards%}
     <tbody class="table-border-bottom-0">
       <tr>
-        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{package.name}}</strong></td>
-        <td>$ {{package.price}}</td>
+        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{giftcard.name}}</strong></td>
+        <td>$ {{giftcard.price}}</td>
         <td><img
-          src="{{package.image.url}}"
+          src="{{giftcard.image.url}}"
           alt="user-avatar"
           class="d-block rounded"
           height="100"
@@ -43,24 +43,24 @@
           id="uploadedAvatar"
         /></td>
         <td>
-          {%if package.status == True%}
+          {%if giftcard.status == True%}
           <span class="badge bg-label-success me-1">Active</span>
           {%else%}
           <span class="badge bg-label-danger me-1">In-Active</span>
           {%endif%}
         </td>
-        <td> {{package.timeslot}}</td>
+        <td> {{giftcard.timeslot}}</td>
         <td>
           <div class="dropdown">
             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
               <i class="bx bx-dots-vertical-rounded"></i>
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="{%url 'view-package' package.id%}"
+              <a class="dropdown-item" href="#"
               ><i class="bx bx-info-circle me-1"></i> View</a>
-            <a class="dropdown-item" href="{%url 'update-package' package.id%}"
+            <a class="dropdown-item" href="#"
             ><i class="bx bx-edit-alt me-1"></i> Edit</a>
-            <a class="dropdown-item" href="{%url 'delete-package' package.id%}"
+            <a class="dropdown-item" href="#"
               ><i class="bx bx-trash me-1"></i> Delete</a>
              
           </div>
@@ -76,8 +76,8 @@
     {%else%}
     <div class="py-5">
         <div class="row justify-content-center mb-3">
-          <center><strong>Sorry! No Packages found at the moment</strong></center>
-          <a href="" class="btn btn-outline-success">Add a Package</a>
+          <center><strong>Sorry! No Gift cards found at the moment</strong></center>
+          <a href="" class="btn btn-outline-success">Add a Gift card</a>
         </div>
     </div>
     {%endif%}

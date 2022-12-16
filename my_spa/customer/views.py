@@ -179,6 +179,12 @@ class MembershipView(ListView):
     context_object_name= "memberships"
 
 
+
+class PackageView(ListView):
+    template_name = "packages.html"
+    model = Package
+    context_object_name = "packages"
+
 def booknow(request):
     return render(request, "booknow.html")
     

@@ -12,6 +12,7 @@ urlpatterns=[
     path("mybookings/<int:bid>/cancel", views.CancelBookingView.as_view(), name="cancel-booking"),
     path("shop", views.ShopView.as_view(), name="shop"),
     path("membership", views.MembershipView.as_view(), name="memberships"),
-    path("booknow", views.booknow, name="booknow")
+    path("booknow", views.booknow, name="booknow"),
+    path("packages", views.PackageView.as_view(), name="packages")
 
 ]

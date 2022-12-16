@@ -101,6 +101,23 @@ class Booking(models.Model):
     status=models.CharField(max_length=200, choices=options, default="booked")
 
 
+class GiftCards(models.Model):
+    name = models.CharField(max_length=300)
+    validity = models.PositiveIntegerField()
+    desc = models.CharField(max_length=300)
+    quantity = models.PositiveIntegerField()
+    price = models.PositiveIntegerField()
+    img = models.ImageField(upload_to="images/",null=True)
+    options = (
+        ("available", "available"),
+        ("booked", "booked"),
+        ("not available", "not available")
+    )
+    status = models.CharField(max_length=200, choices=options, default="available")
+
+
+    
+
 
 
 

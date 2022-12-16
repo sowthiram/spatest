@@ -36,6 +36,12 @@ urlpatterns=[
     path("timeslot/<int:tid>/update", views.UpdateTimeslotView.as_view(), name="update-timeslot"),
     path("package/<int:pid>/update", views.UpdatePackageView.as_view(), name="update-package"),
     path("package/<int:pid>", views.DetailPackageView.as_view(), name="view-package"),
+    path("package/<int:pid>/delete", views.DeletePackageView.as_view(), name="delete-package"),
+    path("giftcards/manage", views.ManageGiftCardsView.as_view(), name="manage-giftcards"),
+    path("giftcards/add", views.AddGiftCardsView.as_view(), name="add-giftcards"),
+
+
+
 
 
 

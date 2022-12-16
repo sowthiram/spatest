@@ -246,6 +246,13 @@ class DeleteTimeslotsView(DeleteView):
     template_name = "confirm-delete.html"
 
 
+class DeletePackageView(DeleteView):
+    model = Package
+    pk_url_kwarg = "pid"
+    success_url = reverse_lazy("manage-packages")
+    template_name = "confirm-delete.html"
+
+
 # Bookings
 class ManageBookingsView(TemplateView):
     model = Booking
@@ -329,6 +336,33 @@ class AddPackagesView(FormView):
         else:
             messages.warning(request, "Package creation failed")
             return redirect("manage-packages")
+
+
+#Giftcards
+class ManageGiftCardsView(TemplateView):
+    model = GiftCards
+    template_name = "manage-giftcards.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["giftcards"] = GiftCards.objects.all()
+        return context
+
+
+class AddGiftCardsView(FormView):
+    template_name = "add-giftcards.html"
+    form_class = GiftCardAddForm
+    success_url = reverse_lazy("manage-giftcards")
+
+    def post(self, request, *args, **kwargs):
+        form = GiftCardAddForm(request.POST, request.FILES)
+        if form.is_valid:
+            form.save()
+            messages.success(request, "GiftCard created Successfully")
+            return redirect("manage-giftcards")
+        else:
+            messages.warning(request, "GiftCard creation failed")
+            return redirect("manage-giftcards")
 
 class DetailBeauticianView(DetailView):
     model = Beautician

@@ -36,6 +36,12 @@ class PackageAddForm(forms.ModelForm):
         fields ='__all__'
 
 
+class GiftCardAddForm(forms.ModelForm):
+    class Meta:
+        model= GiftCards
+        fields ='__all__'
+
+
 class UpdateMembershipForm(forms.ModelForm):
     class Meta:
         model=Memberships
