@@ -193,5 +193,5 @@ class GiftCardView(ListView):
 
 
 def booknow(request):
-    return render(request, "booknow.html")
+    return render(request, "book_now.html")
     
