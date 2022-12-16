@@ -9,7 +9,7 @@ from owner.forms import *
 
 # Create your views here.
 
-
+#Dashboard
 class DashboardView(TemplateView):
     template_name = "index.html"
     # model = Services
@@ -83,11 +83,31 @@ class AddCategoriesView(CreateView):
             messages.warning(request,"Categories added Failed")
             return redirect("manage-categories")
 
+
+class DetailCategoryView(DetailView):
+    model = Categories
+    template_name = "category-view.html"
+    pk_url_kwarg = "cid"
+    context_object_name = "category"
+
+
 class DeleteCategoriesView(DeleteView):
     model = Categories
     pk_url_kwarg = "cid"
     success_url = reverse_lazy("manage-categories")
     template_name = "confirm-delete.html"
+
+
+class UpdateCategoryView(UpdateView):
+    model = Categories
+    template_name = "update-category.html"
+    pk_url_kwarg = "cid"
+    success_url = reverse_lazy("manage-categories")
+    form_class = UpdateCategoryForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Category  updated successfully")
+        return super().form_valid(form)
 
 
 #Services
@@ -116,12 +136,24 @@ class AddServicesView(FormView):
             messages.warning(request, "Service creation failed")
             return redirect("manage-services")
 
+
 class DeleteServicesView(DeleteView):
     model = Services
     pk_url_kwarg = "sid"
     success_url = reverse_lazy("manage-services")
     template_name = "confirm-delete.html"
 
+
+class UpdateServiceView(UpdateView):
+    model = Services
+    template_name = "update-service.html"
+    pk_url_kwarg = "sid"
+    success_url = reverse_lazy("manage-services")
+    form_class = UpdateServiceForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Service  updated successfully")
+        return super().form_valid(form)
 
 
 class ServiceView(DetailView):
@@ -165,6 +197,18 @@ class DeleteMembershipView(DeleteView):
     template_name = "confirm-delete.html"
 
 
+class UpdateMembershipView(UpdateView):
+    model = Memberships
+    template_name = "update-membership.html"
+    pk_url_kwarg = "mid"
+    success_url = reverse_lazy("manage-memberships")
+    form_class = UpdateMembershipForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Membership  updated successfully")
+        return super().form_valid(form)
+
+
 #Beauticians
 class ManageBeauticiansView(TemplateView):
     model = Beautician
@@ -192,7 +236,7 @@ class AddBeauticiansView(CreateView):
         return context
 
     def post(self, request, *args, **kwargs):
-        form = BeauticianAddForm(request.POST)
+        form = BeauticianAddForm(request.POST, request.FILES)
         if form.is_valid:
             form.save()
             messages.success(request, "Beautician added Successfully")
@@ -201,11 +245,31 @@ class AddBeauticiansView(CreateView):
             messages.warning(request, "Beautician creation failed")
             return redirect("manage-beauticians")
 
+
+class DetailBeauticianView(DetailView):
+    model = Beautician
+    template_name = "beautician-view.html"
+    pk_url_kwarg = "bid"
+    context_object_name = "beautician"
+
+
 class DeleteBeauticianView(DeleteView):
     model = Beautician
     pk_url_kwarg = "bid"
     success_url = reverse_lazy("manage-beauticians")
     template_name = "confirm-delete.html"
+
+
+class UpdateBeauticianView(UpdateView):
+    model = Beautician
+    template_name = "update-beautician.html"
+    pk_url_kwarg = "bid"
+    success_url = reverse_lazy("manage-beauticians")
+    form_class = UpdateBeauticianForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Beautician  updated successfully")
+        return super().form_valid(form)
 
 
 #Timeslots
@@ -239,6 +303,7 @@ class AddTimeslotsView(CreateView):
             messages.warning(request, "Timeslot creation failed")
             return redirect("manage-timeslots")
 
+
 class DeleteTimeslotsView(DeleteView):
     model = Timeslots
     pk_url_kwarg = "tid"
@@ -246,11 +311,16 @@ class DeleteTimeslotsView(DeleteView):
     template_name = "confirm-delete.html"
 
 
-class DeletePackageView(DeleteView):
-    model = Package
-    pk_url_kwarg = "pid"
-    success_url = reverse_lazy("manage-packages")
-    template_name = "confirm-delete.html"
+class UpdateTimeslotView(UpdateView):
+    model = Beautician
+    template_name = "update-timeslot.html"
+    pk_url_kwarg = "tid"
+    success_url = reverse_lazy("manage-timeslots")
+    form_class = UpdateTimeslotForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Timeslot  updated successfully")
+        return super().form_valid(form)
 
 
 # Bookings
@@ -322,6 +392,7 @@ class ManagePackagesView(TemplateView):
         context["packages"] = Package.objects.all()
         return context
 
+
 class AddPackagesView(FormView):
     template_name = "add-packages.html"
     form_class = PackageAddForm
@@ -336,6 +407,32 @@ class AddPackagesView(FormView):
         else:
             messages.warning(request, "Package creation failed")
             return redirect("manage-packages")
+
+
+class DetailPackageView(DetailView):
+    model = Package
+    template_name = "view-package.html"
+    pk_url_kwarg = "pid"
+    context_object_name = "package"
+
+
+class DeletePackageView(DeleteView):
+    model = Package
+    pk_url_kwarg = "pid"
+    success_url = reverse_lazy("manage-packages")
+    template_name = "confirm-delete.html"
+
+
+class UpdatePackageView(UpdateView):
+    model = Package
+    template_name = "update-package.html"
+    pk_url_kwarg = "pid"
+    success_url = reverse_lazy("manage-packages")
+    form_class = UpdatePackageForm
+
+    def form_valid(self, form):
+        messages.success(self.request, "Package updated successfully")
+        return super().form_valid(form)
 
 
 #Giftcards
@@ -389,99 +486,3 @@ class DeleteGiftCardView(DeleteView):
     template_name = "confirm-delete.html"
     pk_url_kwarg = "gid"
     success_url = reverse_lazy("manage-giftcards")
-
-
-
-class DetailBeauticianView(DetailView):
-    model = Beautician
-    template_name = "beautician-view.html"
-    pk_url_kwarg = "bid"
-    context_object_name = "beautician"
-
-
-class DetailCategoryView(DetailView):
-    model = Categories
-    template_name = "category-view.html"
-    pk_url_kwarg = "cid"
-    context_object_name = "category"
-
-
-class DetailPackageView(DetailView):
-    model = Package
-    template_name = "view-package.html"
-    pk_url_kwarg = "pid"
-    context_object_name = "package"
-
-
-class UpdateMembershipView(UpdateView):
-    model = Memberships
-    template_name = "update-membership.html"
-    pk_url_kwarg = "mid"
-    success_url = reverse_lazy("manage-memberships")
-    form_class = UpdateMembershipForm
-
-    def form_valid(self, form):
-        messages.success(self.request, "Membership  updated successfully")
-        return super().form_valid(form)
-
-
-class UpdateServiceView(UpdateView):
-    model = Services
-    template_name = "update-service.html"
-    pk_url_kwarg = "sid"
-    success_url = reverse_lazy("manage-services")
-    form_class = UpdateServiceForm
-
-    def form_valid(self, form):
-        messages.success(self.request, "Service  updated successfully")
-        return super().form_valid(form)
-
-
-
-class UpdateCategoryView(UpdateView):
-    model = Categories
-    template_name = "update-category.html"
-    pk_url_kwarg = "cid"
-    success_url = reverse_lazy("manage-categories")
-    form_class = UpdateCategoryForm
-
-    def form_valid(self, form):
-        messages.success(self.request, "Category  updated successfully")
-        return super().form_valid(form)
-
-
-
-class UpdateBeauticianView(UpdateView):
-    model = Beautician
-    template_name = "update-beautician.html"
-    pk_url_kwarg = "bid"
-    success_url = reverse_lazy("manage-beauticians")
-    form_class = UpdateBeauticianForm
-
-    def form_valid(self, form):
-        messages.success(self.request, "Beautician  updated successfully")
-        return super().form_valid(form)
-
-
-class UpdateTimeslotView(UpdateView):
-    model = Beautician
-    template_name = "update-timeslot.html"
-    pk_url_kwarg = "tid"
-    success_url = reverse_lazy("manage-timeslots")
-    form_class = UpdateTimeslotForm
-
-    def form_valid(self, form):
-        messages.success(self.request, "Timeslot  updated successfully")
-        return super().form_valid(form)
-
-
-class UpdatePackageView(UpdateView):
-    model = Package
-    template_name = "update-package.html"
-    pk_url_kwarg = "pid"
-    success_url = reverse_lazy("manage-packages")
-    form_class = UpdatePackageForm
-
-    def form_valid(self, form):
-        messages.success(self.request, "Package updated successfully")
-        return super().form_valid(form)

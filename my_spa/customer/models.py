@@ -18,6 +18,7 @@ class Categories(models.Model):
 
 class Beautician(models.Model):
     name=models.CharField(max_length=150)
+    image = models.ImageField(upload_to='images/', null=True)
     options=(
         ("male","male"),
         ("female","female"),
