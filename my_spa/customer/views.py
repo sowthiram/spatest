@@ -9,6 +9,7 @@ from customer import forms
 from django.contrib import messages
 import json
 from datetime import datetime
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -194,4 +195,4 @@ class GiftCardView(ListView):
 
 def booknow(request):
     return render(request, "book_now.html")
-    
+
